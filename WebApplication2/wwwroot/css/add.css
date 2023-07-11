@@ -1,0 +1,28 @@
+﻿
+
+#file-input {
+    display: none;
+}
+
+.preview {
+   display: flex;
+   flex-direction:column;
+    max-width: 350px;
+    align-items:center;
+  
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: rgb(101, 101, 255);
+}

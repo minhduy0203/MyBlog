@@ -1,0 +1,115 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/css/add.css">
+    <script src="~/lib/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#mytextarea',
+            menubar: ' edit view insert format tools table',
+            toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist  | forecolor backcolor removeformat | emoticons | fullscreen  | image media  link | code',
+            plugins: 'code importcss  searchreplace autolink   visualblocks visualchars fullscreen image link media   codesample table charmap  nonbreaking anchor  insertdatetime advlist lists  wordcount   charmap   quickbars  emoticons',
+            contextmenu: "link image imagetools table",
+            image_advtab: true,
+            toolbar_sticky: true,
+            images_upload_url: '/Blog/Upload',
+            paste_data_images: true,
+            images_reuse_filename: true,
+        });
+
+       
+
+    </script>
+</head>
+<body>
+
+    <!--
+      Adding the `tinymce-editor` element with various options set as attributes.
+    -->
+
+    <div class="main-wrapper">
+
+        <article class="blog-post px-3 py-5 p-md-5">
+            <div class="container single-col-max-width">
+
+
+
+                <div class="rCol">
+                    <div id="prv" style="height:auto; width:auto; float:left; margin-bottom: 28px; margin-left: 200px;"></div>
+                </div>
+
+                <input type="hidden" id="filecount" value='0'>
+                <form method="post" asp-asp-controller="Blog" asp-action="UploadPost" enctype="multipart/form-data">
+
+                    <div class="">
+                        <div class="preview">
+                            <img id="img-preview"
+                                 src="https://as1.ftcdn.net/v2/jpg/02/48/42/64/1000_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
+
+                            <label for="file-input">Upload Image</label>
+                           <input id="file-input" type="file" name="multipartFile" />
+                        </div>
+                    </div>
+
+                    <span>Title</span>
+                    <input class="w-100 mb-2" type="text" name="Title" />
+                    <span>Summary</span>
+                    <input class="w-100 mb-2  py-5" type="text" name="Summary" />
+
+                    <textarea name="Content" id="mytextarea">Hello, World!</textarea>
+                    <div class="d-flex justify-content-center flex-row">
+                        <button type="submit" class="btn btn-primary  m-2 text-center">Update</button>
+                    </div>
+                </form>
+
+
+
+                <nav class="blog-nav nav nav-justified my-5">
+                    <a class="nav-link-prev nav-item nav-link rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+                    <a class="nav-link-next nav-item nav-link rounded-right" href="#">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+                </nav>
+
+                <div class="blog-comments-section">
+                    <div id="disqus_thread"></div>
+                    <script>
+
+                    </script>
+                    <noscript>
+                        Please enable JavaScript to view the
+                        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+                            comments powered by Disqus.
+                        </a>
+                    </noscript>
+                </div><!--//blog-comments-section-->
+
+            </div><!--//container-->
+        </article>
+
+
+
+
+
+    </div>
+
+    <script>
+        const input = document.getElementById('file-input');
+        const image = document.getElementById('img-preview');
+
+        input.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                const src = URL.createObjectURL(e.target.files[0]);
+                image.src = src;
+            }
+        });
+    </script>
+
+
+</body>
+</html>
