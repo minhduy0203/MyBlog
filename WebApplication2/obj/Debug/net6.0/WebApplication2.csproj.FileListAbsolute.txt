@@ -63,3 +63,5 @@ C:\Users\minhd\source\repos\MyProject\WebApplication2\bin\Debug\net6.0\runtimes\
 C:\Users\minhd\source\repos\MyProject\WebApplication2\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\minhd\source\repos\MyProject\WebApplication2\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\minhd\source\repos\MyProject\WebApplication2\obj\Debug\net6.0\WebApplication2.csproj.CopyComplete
+C:\Users\minhd\source\repos\MyProject\WebApplication2\bin\Debug\net6.0\PagedList.dll
+C:\Users\minhd\source\repos\MyProject\WebApplication2\bin\Debug\net6.0\PagedList.Mvc.dll

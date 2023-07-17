@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PagedList;
+using System.Collections.Generic;
 using System.Security.Claims;
 using WebApplication2.Models;
 using static System.Net.WebRequestMethods;
@@ -10,16 +12,22 @@ namespace WebApplication2.Controllers
 {
     public class BlogController : Controller
     {
-        public IActionResult Index()
+        private static int PAGE_SIZE = 3;
+
+        public IActionResult Index(int page = 1)
         {
             List<Post> posts = new List<Post>();
             using (MyBlogContext context = new MyBlogContext())
             {
                 posts = context.Posts
                     .Include((p) => p.Author).ToList();
-            }
-            return View(posts);
-        }
+
+                IPagedList<Post> list = posts.ToPagedList(page, PAGE_SIZE);
+                ViewBag.totalPage = list.PageCount;
+                ViewBag.currentPage = page;
+				return View(list.ToList());
+			}
+		}
 
         public IActionResult Search(String title)
         {
@@ -53,7 +61,7 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-       //Upload Post 
+        //Upload Post 
 
         [HttpPost]
         public IActionResult UploadPost(Post post, IFormFile multipartFile)
@@ -71,9 +79,11 @@ namespace WebApplication2.Controllers
                         post.Author = author;
                         post.AuthorId = author.Id;
                         post.CreateAt = DateTime.Now;
-                        if(location != null) {
-                        post.ImagePreview = location;
-                        } else
+                        if (location != null)
+                        {
+                            post.ImagePreview = location;
+                        }
+                        else
                         {
                             post.ImagePreview = "https://as1.ftcdn.net/v2/jpg/02/48/42/64/1000_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg";
                         }
@@ -154,7 +164,7 @@ namespace WebApplication2.Controllers
         //Get Edit form
         public IActionResult Edit(int id)
         {
-            using(MyBlogContext ctx = new MyBlogContext())
+            using (MyBlogContext ctx = new MyBlogContext())
             {
                 Post post = ctx.Posts.FirstOrDefault(p => p.Id == id);
                 return View(post);
@@ -165,32 +175,46 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public IActionResult Edit(Post post, IFormFile? multipartFile)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                using(var ctx = new MyBlogContext())
+                using (var ctx = new MyBlogContext())
                 {
-                    
-                  
+
+
                     Post postUpdate = ctx.Posts.FirstOrDefault(p => p.Id == post.Id);
                     if (multipartFile != null)
                     {
                         postUpdate.ImagePreview = UploadPhoto(multipartFile);
-                    } 
+                    }
                     postUpdate.Summary = post.Summary;
                     postUpdate.Content = post.Content;
                     postUpdate.Title = post.Title;
                     ctx.SaveChanges();
                 }
 
-                return RedirectToAction("Post", new {id = post.Id});
-            } else
+                return RedirectToAction("Post", new { id = post.Id });
+            }
+            else
             {
                 using (var ctx = new MyBlogContext())
-                { 
+                {
                     Post postUpdate = ctx.Posts.FirstOrDefault(p => p.Id == post.Id);
                     post.ImagePreview = postUpdate.ImagePreview;
                 }
                 return View(post);
+            }
+        }
+
+
+        public IActionResult Delete(int id)
+        {
+
+            using (var ctx = new MyBlogContext())
+            {
+                Post post = ctx.Posts.FirstOrDefault(p => p.Id == id);
+                ctx.Posts.Remove(post);
+                ctx.SaveChanges();
+                return RedirectToAction("Index");
             }
         }
 

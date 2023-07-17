@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Apw3VP2i+W7WQfGiNNc9CkMV2BnmH7Fi9DfJWI6Q/xw=",
+  "Hash": "p6HvD7ig11d4k/M8HPP7OBImf216E633PjNhhMaysps=",
   "Source": "WebApplication2",
   "BasePath": "_content/WebApplication2",
   "Mode": "Default",
@@ -253,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\mceclip0.png"
+    },
+    {
+      "Identity": "C:\\Users\\minhd\\source\\repos\\MyProject\\WebApplication2\\wwwroot\\images\\ngon-ngu-lap-trinh-co-ban.jpg",
+      "SourceId": "WebApplication2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\minhd\\source\\repos\\MyProject\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/WebApplication2",
+      "RelativePath": "images/ngon-ngu-lap-trinh-co-ban.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ngon-ngu-lap-trinh-co-ban.jpg"
     },
     {
       "Identity": "C:\\Users\\minhd\\source\\repos\\MyProject\\WebApplication2\\wwwroot\\js\\blog.js",

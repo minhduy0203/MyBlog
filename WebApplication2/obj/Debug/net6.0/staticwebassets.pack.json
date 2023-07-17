@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\images\\mceclip0.png"
     },
     {
+      "Id": "C:\\Users\\minhd\\source\\repos\\MyProject\\WebApplication2\\wwwroot\\images\\ngon-ngu-lap-trinh-co-ban.jpg",
+      "PackagePath": "staticwebassets\\images\\ngon-ngu-lap-trinh-co-ban.jpg"
+    },
+    {
       "Id": "C:\\Users\\minhd\\source\\repos\\MyProject\\WebApplication2\\wwwroot\\js\\blog.js",
       "PackagePath": "staticwebassets\\js\\blog.js"
     },
